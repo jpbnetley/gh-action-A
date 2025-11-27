@@ -2,7 +2,6 @@ name: CI remote with value
 
 on:
   pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 env:
