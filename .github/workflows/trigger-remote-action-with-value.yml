@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  ORG: jpbnetley
+  REPO: gh-action-B
+  WORKFLOW: gh-b-with-value-workflow.yml
+
+jobs:
+  build-remote-repo:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Setup composit env var
+          run: |
+            echo "FULL_REPO=${{env.ORG}}/${{env.REPO}}" >> $GITHUB_ENV
+        - name: trigger remote repo action
+          run: |
+            gh workflow run ${{ env.WORKFLOW }}  -R ${{ env.FULL_REPO }} --ref main -f value1=production -f value2=value2twoo
+            gh workflow run ${{ env.WORKFLOW }} -R ${{ env.FULL_REPO }}
+            sleep 5
+            gh run watch -R  ${{ env.FULL_REPO }} $(gh run list -R  ${{ env.FULL_REPO }} -w  ${{ env.WORKFLOW }} -L1 --json databaseId --jq .[0].databaseId)
+    env:
+      # "PAT" (Personal access tokan). The PAT requires the "Full repo" access
+      GH_TOKEN: ${{ secrets.PAT  }}
