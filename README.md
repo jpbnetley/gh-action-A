@@ -1,4 +1,4 @@
-# ah-action-A
+# gh-action-A
 
 The goal of this repo is to test triggering an action of a different reposotiry from this workflow.
 
