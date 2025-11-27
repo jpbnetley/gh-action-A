@@ -20,7 +20,6 @@ jobs:
         - name: trigger remote repo action
           run: |
             gh workflow run ${{ env.WORKFLOW }}  -R ${{ env.FULL_REPO }} --ref main -f value1=production -f value2=value2twoo
-            gh workflow run ${{ env.WORKFLOW }} -R ${{ env.FULL_REPO }}
             sleep 5
             gh run watch -R  ${{ env.FULL_REPO }} $(gh run list -R  ${{ env.FULL_REPO }} -w  ${{ env.WORKFLOW }} -L1 --json databaseId --jq .[0].databaseId)
     env:
