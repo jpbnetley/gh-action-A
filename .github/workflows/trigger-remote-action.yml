@@ -9,8 +9,8 @@ on:
 
 env:
   ORG: jpbnetley
-  REPO: ah-action-B
-  WORKFLOW: ah-b-workflow.yml
+  REPO: gh-action-B
+  WORKFLOW: gh-b-workflow.yml
 
 jobs:
   build-remote-repo:
