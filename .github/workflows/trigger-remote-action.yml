@@ -30,7 +30,7 @@ jobs:
           run: |
               gh workflow run ${{ env.WORKFLOW }} -R ${{ steps.setup_composite_env_var.outputs.FULL_REPO }}
               sleep 5
-              databaseId=$(gh run list -R  ${{ steps.setup_composite_env_var.outputs.FULL_REPO }} -w  ${{ env.WORKFLOW }} -L1 --json databaseId --jq .[0].databaseId)
+              databaseId=$(gh run list -R ${{ steps.setup_composite_env_var.outputs.FULL_REPO }} -w  ${{ env.WORKFLOW }} -L1 --json databaseId --jq .[0].databaseId)
               echo "DATABASE_ID=$databaseId" >> $GITHUB_OUTPUT
 
         - name: Add summary with remote workflow link
