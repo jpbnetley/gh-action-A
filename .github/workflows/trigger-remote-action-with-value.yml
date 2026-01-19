@@ -17,7 +17,7 @@ jobs:
       databaseId: ${{ steps.trigger_remote_action.outputs.DATABASE_ID }}
       fullRepo: ${{ steps.setup_composite_env_var.outputs.FULL_REPO }}
     env:
-      GH_TOKEN: ${{ secrets.PAT }}
+      GH_TOKEN: ${{ secrets.NEW_PAT }}
     steps:
         - name: Setup compisit env var
           id: setup_composite_env_var
@@ -50,5 +50,5 @@ jobs:
 
     env:
       # "PAT" (Personal access tokan). The PAT requires the "Full repo" access
-      GH_TOKEN: ${{ secrets.PAT  }}
+      GH_TOKEN: ${{ secrets.NEW_PAT  }}
 
